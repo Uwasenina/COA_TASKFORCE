@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="gallery">
+       <div class="photo" onmouseover="hoverEffect(this)" onmouseout="resetEffect(this)">
+        <img src="./Images/image1.png" alt="" data-description="This is a FENNEC FOX found in India">
+        <div class="image">
+            <div class="up">
+            <h1>FENNEC <br> FOX</h1>
+            <P class="country">India</P>
+            </div>
+            <p class="more" onclick="showMore(this)">Know more <i class="fa-solid fa-arrow-right"></i></p>
+        </div>
+        </div>
+    <div class="photo" onmouseover="hoverEffect(this)" onmouseout="resetEffect(this)">
+        <img src="./Images/image2.png" alt="" data-description="This is a HUMPBACKWHALE found in South Africa">
+         <div class="image">
+            <div class="up">
+            <h1>HUMPBACK <br> WHALE</h1>
+            <P class="country">South Africa</P>
+            </div>
+            <p class="more" onclick="showMore(this)">Know more <i class="fa-solid fa-arrow-right"></i></p>
+        </div>
+       </div>
+       <div class="photo" onmouseover="hoverEffect(this)" onmouseout="resetEffect(this)">
+        <img src="./Images/Image3.png" alt="" data-description="This is COMMON BROWN BANOON found in South Africa">
+         <div class="image">
+            <div class="up">
+            <h1>COMMON BROWN <br> BABOON</h1>
+            <P class="country">South Africa</P>
+            </div>
+            <p class="more" onclick="showMore(this)">Know more <i class="fa-solid fa-arrow-right"></i></p>
+        </div>
+       </div>
+
+       <div class="photo" onmouseover="hoverEffect(this)" onmouseout="resetEffect(this)">
+        <img src="./Images/Image4.png" alt="" data-description="This is SPOTTED DEER">
+         <div class="image">
+            <div class="up">
+            <h1>SPOTTED <br> DEER</h1>
+            <P class="country">Amazon</P>
+            </div>
+            <p class="more" onclick="showMore(this)">Know more <i class="fa-solid fa-arrow-right"></i></p>
+        </div>
+       </div>
+       <div id="singleImage-container" class="singleImage" style="display: none;">
+        <span class="close" onclick="closeSingleImage()"><i class="fa-solid fa-x"></i></span>
+        <img id="singleImage" src="" alt="">
+        <div id="description" class="description"></div>
+    </div>
+    <script>
+    function hoverEffect(photo) {
+    const img = photo.querySelector("img");
+    const up = photo.querySelector(".up");
+    const h1 = photo.querySelector("h1");
+    const more = photo.querySelector(".more");
+
+    img.style.opacity = "0.4s";
+    img.style.filter = "brightness(30%) grayscale(100%)";
+    img.style.transform = "scale(1.1)";
+    up.style.transform = "translateY(-20px)";
+    h1.style.fontsize = "32px";
+    more.style.display = "flex";
+}
+
+function resetEffect(photo) {
+    const img = photo.querySelector("img");
+    const up = photo.querySelector(".up");
+    const h1 = photo.querySelector("h1");
+    const more = photo.querySelector(".more");
+
+    img.style.opacity = "1";
+    up.style.transform = "translateY(0px)";
+    img.style.filter = "brightness(100%) grayscale(0%)";
+    img.style.transform = "scale(1)";
+    h1.style.fontsize = "24px";
+    more.style.display = "none";
+}
+
+function showMore(element) {
+  const photo = element.closest(".photo");
+  const imgSrc = photo.querySelector("img").src;
+  const imgDescription = photo.querySelector("img").dataset.description;
+  document.getElementById("singleImage").src = imgSrc;
+  document.getElementById("description").innerHTML = `<p>${imgDescription}`;
+  document.getElementById("singleImage-container").style.display = "flex";
+
+  const photos = document.querySelectorAll(".photo");
+  photos.forEach((photo) => {
+    if (photo !== element.closest(".photo")) {
+      photo.style.display = "none";
+    }
+  });
+}
+
+function closeSingleImage() {
+  document.getElementById("singleImage-container").style.display = "none";
+
+  const photos = document.querySelectorAll(".photo");
+  photos.forEach((photo) => {
+    photo.style.display = "block";
+  });
+}
+    </script>
+</body>
+</html>
